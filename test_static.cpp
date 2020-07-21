@@ -48,10 +48,22 @@ const int maxn = 1e6 + 10;
 int T;
 string str;
 int n, m;
-
+int x, y;
+class EnemyTarget {
+public:
+EnemyTarget() { ++numTargets; }
+EnemyTarget(const EnemyTarget&) { ++numTargets; }
+~EnemyTarget() { --numTargets; }
+static size_t numberOfTargets() { return numTargets; }
+bool destroy(); // returns success of attempt to destroy EnemyTarget object
+private:
+static size_t numTargets; // object counter
+};
 void task() {
-
-	
+	 EnemyTarget a;
+	 //a.numberOfTargets();
+	 
+	 cout << x  << " " <<y << endl;
 	// you should actually read the stuff at the bottom
 }
 int main() {

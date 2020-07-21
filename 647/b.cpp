@@ -22,8 +22,8 @@ template<class L, class R> ostream &operator<<(ostream &os, pair<L,R> P) {
 #define sz(x) (int)(x).size()
 #define mp make_pair
 #define pb push_back
-#define fi first
-#define se second
+#define f first
+#define s second
 #define lb lower_bound
 #define ub upper_bound
 #define all(x) x.begin(), x.end()
@@ -50,7 +50,32 @@ string str;
 int n, m;
 
 void task() {
-
+	 cin >> n;
+	 vector<int> a(n), c;
+	 vector<int> b(2000, 0);
+	 for (int i = 0; i < n; ++i) {
+		 cin >> a[i];
+		 b[a[i]]++;
+		 if (i) c.push_back(a[i] ^ a[0]);
+	 }
+	 sort(c.begin(), c.end());
+	 for (auto k : c) {
+		 vector<int> cp_b = b;
+		 bool ok = true;
+		 for (auto x : a) if (b[x]) {
+			 if (!b[k ^ x]) {
+				  ok =false;
+			 } else {
+				  b[k ^ x] = b[x] = 0;
+			 }
+		 }
+		 if (ok) {
+			 cout << k << endl;
+			 return;
+		 }
+		 b = cp_b;
+	 }
+	 cout << -1 << endl;
 	
 	// you should actually read the stuff at the bottom
 }

@@ -44,20 +44,55 @@ long long pw(auto x, auto y) {
 
 
 const int maxn = 1e6 + 10;
-
+const string find_str = "abacaba";
 int T;
 string str;
 int n, m;
+int check(string &str, int l, int r) {
+	debug(l, r, str.size(), find_str.size());
+	for (int i = l; i < r; ++i) {
+		if (str[i] == '?') {
+			str[i] = find_str[i - l];
+		}  else {
+			if (str[i] != find_str[i - l]) return 0;
+		}
+	}
 
+	return 1;
+}
+bool find(string &str) {
+	for (int i = 0; i < str.size(); ++i) {
+		if (str[i] == '?') str[i] = 'z';
+	}
+	int suit = 0;
+	debug(str);
+	for (int i = 0; i < str.size() - 6; ++i) {
+		if (check(str, i, i + 7)) ++suit;
+	}
+	debug(suit);
+	return suit == 1;
+}
 void task() {
-
-	
+	 cin >> n;
+	 string str;
+	 cin >> str;
+	 for (int i = 0; i < n - 6; ++i){
+		 string str2 = str;
+		 int ok = check(str2, i, i + 7);
+		 if (!ok) continue;
+		 if (ok && find(str2)){
+			 puts("Yes");
+			 puts(str2.c_str());
+			 return;
+		 }
+	 }
+	 puts("No");
 	// you should actually read the stuff at the bottom
 }
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  cout<<fixed<<setprecision(20);
+  //cout<<fixed<<setprecision(20);
   cin >> T;
   for (int ti = 1; ti <= T; ++ti) {
     task();

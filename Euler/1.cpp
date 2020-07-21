@@ -22,8 +22,8 @@ template<class L, class R> ostream &operator<<(ostream &os, pair<L,R> P) {
 #define sz(x) (int)(x).size()
 #define mp make_pair
 #define pb push_back
-#define fi first
-#define se second
+#define f first
+#define s second
 #define lb lower_bound
 #define ub upper_bound
 #define all(x) x.begin(), x.end()
@@ -50,7 +50,12 @@ string str;
 int n, m;
 
 void task() {
-
+	cin >> n;
+	int ans = 0;
+	for (int i = 1; i <= n; ++i) if (i % 3 ==0 || i % 5 == 0) {
+		ans += i;
+	}
+	cout << ans << endl;
 	
 	// you should actually read the stuff at the bottom
 }

@@ -50,7 +50,34 @@ string str;
 int n, m;
 
 void task() {
-
+	long long m;
+	long long l, r;
+	cin >> l >> r >> m;
+	for (long long a = l; a <= r; ++a) {
+		//long long u_n = (m + r - l) / a;
+		//long long l_n = max(1LL, (m + l - r) / a);
+		long long l_n = m / a;
+		long long b, c;
+		if (l_n > 0) {
+			long long remain = m - a *  l_n;
+			if (r - l >= remain) {
+				c = l;
+				b = c + remain;
+				cout << a << " "<< b<<" " <<c<< endl;
+				return;
+			}
+		}
+		if (l_n >= 0) {
+			long long remain = m  - a * (l_n + 1);
+			if (l - r <= remain) {
+				b = l;
+				c = l - remain;
+				cout << a << " "<< b<<" " <<c<< endl;
+				return;				
+			}
+		}
+	}
+	cout <<"fuck" <<endl;
 	
 	// you should actually read the stuff at the bottom
 }

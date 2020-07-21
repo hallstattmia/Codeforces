@@ -22,8 +22,8 @@ template<class L, class R> ostream &operator<<(ostream &os, pair<L,R> P) {
 #define sz(x) (int)(x).size()
 #define mp make_pair
 #define pb push_back
-#define fi first
-#define se second
+#define f first
+#define s second
 #define lb lower_bound
 #define ub upper_bound
 #define all(x) x.begin(), x.end()
@@ -50,7 +50,8 @@ string str;
 int n, m;
 
 void task() {
-
+	cin >> n >> nq;
+	for  
 	
 	// you should actually read the stuff at the bottom
 }
@@ -58,7 +59,7 @@ int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout<<fixed<<setprecision(20);
-  cin >> T;
+  T = 1;
   for (int ti = 1; ti <= T; ++ti) {
     task();
   }

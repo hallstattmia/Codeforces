@@ -42,23 +42,63 @@ long long pw(auto x, auto y) {
 	return s;
 }
 
-
 const int maxn = 1e6 + 10;
 
 int T;
 string str;
 int n, m;
+class LRUCache {
+private:
+  list<pair<int, int> > lis; 
+  unordered_map<int, list<pair<int, int> > :: iterator> hash;
+  int c;
 
+public:
+    LRUCache(int capacity) {
+        c = capacity;
+    }
+    
+    int get(int key) {
+      if (hash.find(key) == hash.end()) {
+          return -1;
+      } else {
+				// assert(hash.find(key) != hash.end());
+         return (*hash[key]).first;
+      }
+    }
+    
+    void put(int key, int value) {
+      if (hash.find(key) != hash.end()) { 
+          lis.erase(hash[key]);
+      } else if (lis.size() == c) {
+          hash.erase((*lis.begin()).first);
+          lis.erase(lis.begin());
+          
+      }
+      lis.emplace_back(key, value);
+      hash[key] = --lis.end();
+    }
+};
 void task() {
-
-	
-	// you should actually read the stuff at the bottom
+  LRUCache cache = LRUCache(2);
+  //Test cache.get(1)
+  cache.put(1, 1);
+  cache.put(2, 2);
+  cout << "haha" << endl;
+  //Test cache.put(1, 1);
+  cout << cache.get(1);       // returns 1
+  cache.put(3, 3);    // evicts key 2
+  cout << cache.get(2);       // returns -1 (not found) ok
+  cache.put(4, 4);    // evicts key 1
+  cout << cache.get(1);       // returns -1 (not found) ok
+  cout << cache.get(3);       // returns 3
+  cout << cache.get(4);       // returns 4
 }
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout<<fixed<<setprecision(20);
-  cin >> T;
+  T = 1;
   for (int ti = 1; ti <= T; ++ti) {
     task();
   }

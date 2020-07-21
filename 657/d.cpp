@@ -48,17 +48,42 @@ const int maxn = 1e6 + 10;
 int T;
 string str;
 int n, m;
+int h, nk;
 
 void task() {
+	cin >> n >> h >> m >> nk;
+	vector<pair<int, int>> a; m /= 2;
+	for (int i = 1; i <= n; ++i) {
+		int x, y;
+		cin >> x >> y;
+		debug((y + nk) % (m) , i);
+		a.push_back(make_pair((y) % (m) , i));
+		a.push_back(make_pair((y) % (m) + m , i));
+	}
+	sort(a.begin(), a.end());
+	int l = 0, r = 0;
+	long long ansl = 0, ansr = 1e9;
+	for (int i = 0, j = 0; i < n; ++i) {
+		while (j < a.size() && a[i].first > a[j].first - nk ) ++j;
 
-	
+		if (j - 1 - i < ansr - ansl) {
+			ansr = j - 1;
+			ansl = i;
+		}
+	}
+	cout << ansr - ansl << " " << (a[ansl].first +nk) % m << endl;
+	for (int i = ansl + 1; i <= ansr; ++i) {
+		if (i > ansl + 1) cout << " ";
+		cout <<a[i].second;
+	}
+	cout << endl;
 	// you should actually read the stuff at the bottom
 }
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   cout<<fixed<<setprecision(20);
-  cin >> T;
+  T = 1;
   for (int ti = 1; ti <= T; ++ti) {
     task();
   }

@@ -50,8 +50,40 @@ string str;
 int n, m;
 
 void task() {
-
-	
+	 cin >> n >> m;
+	 vector<pair<long long, long long> > a;
+	 vector<long long> b;
+	 for (int i = 1; i <= m; ++i) {
+		 long long x, y;
+		 cin >> x >> y;
+		 a.push_back(make_pair(y, x));
+		 b.push_back(x);
+	 }
+	 long long ans = 0;
+	 sort(a.begin(), a.end(), greater<pair<long long, long long>>());
+	 sort(b.begin(), b.end(), greater<long long>());
+	 int st = 0;
+	 long long sum  = 0;
+	 for (auto p : a) {
+		 long long y = p.first, x = p.second;
+		 while (st < n && st < b.size() && b[st] > y) {
+			 sum += b[st];  ++st;
+		 }
+		 int need = n - st;
+		 long long s = sum;
+		 debug(x, y, s, st, need);
+		 if (need > 0) {
+			 if (x <= y) {
+				 need--;
+			   s += x;
+			 }
+			 s += y * need; 
+		 }
+		 
+		 ans = max(ans, s);
+		 
+	 }
+	 cout << ans << endl;
 	// you should actually read the stuff at the bottom
 }
 int main() {

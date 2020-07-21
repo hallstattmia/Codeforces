@@ -22,8 +22,8 @@ template<class L, class R> ostream &operator<<(ostream &os, pair<L,R> P) {
 #define sz(x) (int)(x).size()
 #define mp make_pair
 #define pb push_back
-#define fi first
-#define se second
+#define f first
+#define s second
 #define lb lower_bound
 #define ub upper_bound
 #define all(x) x.begin(), x.end()
@@ -51,8 +51,6 @@ int n, m;
 
 void task() {
 
-	
-	// you should actually read the stuff at the bottom
 }
 int main() {
   ios_base::sync_with_stdio(false);
@@ -71,3 +69,5 @@ int main() {
 	* do smth instead of nothing and stay organized
 	* write down
 */
+
+//2178309
